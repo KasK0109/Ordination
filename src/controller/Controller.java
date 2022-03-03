@@ -68,8 +68,13 @@ public class Controller {
 	public DagligSkaev opretDagligSkaevOrdination(LocalDate startDen,
 			LocalDate slutDen, Patient patient, Laegemiddel laegemiddel,
 			LocalTime[] klokkeSlet, double[] antalEnheder) {
-		// TODO
-		return null;
+		DagligSkaev dagligskaen = new DagligSkaev(startDen,slutDen,patient,laegemiddel,klokkeSlet,antalEnheder);
+		if(slutDen.isBefore(startDen)){
+			throw new IllegalArgumentException("Slutdato før startdato");
+		}
+		if(klokkeSlet.length != antalEnheder.length)
+			throw new IllegalArgumentException("Ikke lige mange klokkeslet og enheder");
+		return dagligskaen;
 	}
 
 	/**
