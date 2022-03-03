@@ -1,6 +1,8 @@
 package ordination;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+
 
 public abstract class PN extends Ordination {
 
@@ -8,14 +10,10 @@ public abstract class PN extends Ordination {
 
     private LocalDate startDen;
     private LocalDate slutDen;
-    Patient patient;
-    Laegemiddel laegemiddel;
 
     public PN(LocalDate startDen, LocalDate slutDen,
               Patient patient, Laegemiddel laegemiddel, double antal) {
-        super(startDen, slutDen);
-        this.patient = patient;
-        this.laegemiddel = laegemiddel;
+        super(startDen, slutDen, patient, laegemiddel);
         this.antalEnheder = antal;
     }
 
@@ -26,8 +24,16 @@ public abstract class PN extends Ordination {
      * @param givesDen
      * @return
      */
+
+    ArrayList<LocalDate> datoer = new ArrayList<>();
+
     public boolean givDosis(LocalDate givesDen) {
         // TODO
+        if ((givesDen.isAfter(startDen) || givesDen.isEqual(startDen)) &&
+                (givesDen.isBefore(slutDen) || givesDen.isEqual(slutDen))) {
+            datoer.add(givesDen);
+            return true;
+        }
         return false;   
     }
 
@@ -48,7 +54,7 @@ public abstract class PN extends Ordination {
      */
     public int getAntalGangeGivet() {
         // TODO
-        return-1;
+        return datoer.size();
     }
 
     public double getAntalEnheder() {
