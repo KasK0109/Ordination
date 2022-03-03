@@ -10,6 +10,17 @@ public abstract class Ordination {
     // TODO Link til Laegemiddel
     // TODO constructor (med specifikation)
 
+    private Laegemiddel laegemiddel;
+    /** Note: Nullable return value. */
+    public Laegemiddel getLaegemiddel(){
+        return laegemiddel;
+    }
+    public void setLaegemiddel(Laegemiddel laegemiddel){
+        if(this.laegemiddel != laegemiddel){
+            this.laegemiddel = laegemiddel;
+        }
+    }
+
     public LocalDate getStartDen() {
         return startDen;
     }	
