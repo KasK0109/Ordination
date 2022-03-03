@@ -1,6 +1,7 @@
 package ordination;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 
 
@@ -39,13 +40,24 @@ public abstract class PN extends Ordination {
 
     public double doegnDosis() {
         // TODO
-        return 0.0;
+        double doegnDosis = 0;
+        double samletEnheder = (datoer.size() * antalEnheder);
+        long dageImellem = ChronoUnit.DAYS.between(startDen, slutDen);
+        if (!startDen.isEqual(slutDen)) {
+            dageImellem += 2;
+        }
+        doegnDosis = samletEnheder / dageImellem;
+        return doegnDosis;
     }
 
 
     public double samletDosis() {
         // TODO
-        return 0.0;
+        double samletDosis = 0.0;
+        for (int i = 0; i < datoer.size(); i++) {
+            samletDosis += antalEnheder;
+        }
+        return samletDosis;
     }
 
     /**
