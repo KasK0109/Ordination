@@ -7,14 +7,14 @@ public abstract class DagligFast extends Ordination {
 
 
         // composition -> 0..* dosis
-        private final ArrayList<Dosis> dosisArrayList = new ArrayList<>();
-        public ArrayList<Dosis> getDosisArrayList() {
-            return new ArrayList<>(dosisArrayList);
+        private final ArrayList<Dosis> dosiser = new ArrayList<>();
+        public ArrayList<Dosis> getDoser() {
+            return new ArrayList<>(dosiser);
         }
 
         public Dosis createDosis(String name) {
             Dosis dosis = new Dosis(name);
-            dosisArrayList.add(dosis);
+            dosiser.add(dosis);
             return dosis;
         }
 
@@ -23,18 +23,15 @@ public abstract class DagligFast extends Ordination {
 
         //-----------------------------------------
 
-    public DagligFast() {
+
+    public DagligFast(LocalDate startDen, LocalDate slutDen, Patient patient, Laegemiddel laegemiddel) {
+        super(startDen, slutDen, patient, laegemiddel);
     }
-
-    public DagligFast opretDaligFast(LocalDate startDen, LocalDate slutDen, Patient patient, Laegemiddel laegemiddel,
-                                     double morgenAntal, double middagAntal, double aftenAntal,
-                                     double natAntal) {
-
-
 
 
     }
 
 
     // TODO
-}
+
+
