@@ -13,7 +13,7 @@ public abstract class PN extends Ordination {
 
     public PN(LocalDate startDen, LocalDate slutDen,
               Patient patient, Laegemiddel laegemiddel, double antal) {
-        super(startDen, slutDen);
+        super(startDen, slutDen,patient,laegemiddel);
         this.patient = patient;
         this.laegemiddel = laegemiddel;
         this.antalEnheder = antal;
