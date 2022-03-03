@@ -11,6 +11,8 @@ import ordination.Ordination;
 import ordination.PN;
 import ordination.Patient;
 
+import javax.swing.text.html.ListView;
+
 public class VisOrdinationPane extends GridPane {
 	private ListView<Patient> lstPatient = new ListView<>();
 	private ListView<Ordination> lstOrdination = new ListView<>();
