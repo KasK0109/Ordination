@@ -3,11 +3,9 @@ package ordination;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class DagligFast {
+public abstract class DagligFast extends Ordination {
 
 
-
-    public class Groupdaglig {
         // composition -> 0..* dosis
         private final ArrayList<Dosis> dosisArrayList = new ArrayList<>();
         public ArrayList<Dosis> getDosisArrayList() {
@@ -19,13 +17,21 @@ public class DagligFast {
             dosisArrayList.add(dosis);
             return dosis;
         }
-    }
+
+
+
 
         //-----------------------------------------
 
-    public DagligFast opret( LocalDate startDen, LocalDate slutDen, Patient patient, Laegemiddel laegemiddel,
-                             double morgenAntal, double middagAntal, double aftenAntal,
-                             double natAntal) {
+    public DagligFast() {
+    }
+
+    public DagligFast opretDaligFast(LocalDate startDen, LocalDate slutDen, Patient patient, Laegemiddel laegemiddel,
+                                     double morgenAntal, double middagAntal, double aftenAntal,
+                                     double natAntal) {
+
+
+
 
     }
 

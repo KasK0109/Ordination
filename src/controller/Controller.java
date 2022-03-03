@@ -53,6 +53,7 @@ public class Controller {
 			LocalDate slutDen, Patient patient, Laegemiddel laegemiddel,
 			double morgenAntal, double middagAntal, double aftenAntal,
 			double natAntal) {
+
 		// TODO
 		return null;
 	}
