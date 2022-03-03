@@ -33,4 +33,14 @@ public class Dosis {
         return "Kl: " + tid + "   antal:  " + antal;
     }
 
-}
+    //--------------------------------
+
+    //Enkelrettet til DadligFast
+
+        private String name;
+        Dosis(String name) { // OBS: package visibility
+            this.name = name;
+        }
+    }
+
+
