@@ -45,6 +45,8 @@ public abstract class PN extends Ordination {
         long dageImellem = ChronoUnit.DAYS.between(startDen, slutDen);
         if (!startDen.isEqual(slutDen)) {
             dageImellem += 2;
+        } else {
+            dageImellem = 1;
         }
         doegnDosis = samletEnheder / dageImellem;
         return doegnDosis;
