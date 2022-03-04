@@ -5,7 +5,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 
 
-public abstract class PN extends Ordination {
+public class PN extends Ordination {
 
     private double antalEnheder;
 
@@ -50,6 +50,11 @@ public abstract class PN extends Ordination {
         }
         doegnDosis = samletEnheder / dageImellem;
         return doegnDosis;
+    }
+
+    @Override
+    public String getType() {
+        return null;
     }
 
 
