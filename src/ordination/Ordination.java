@@ -10,7 +10,7 @@ public abstract class Ordination {
 
     // TODO Link til Laegemiddel
     // TODO constructor (med specifikation)
-    public Ordination(LocalDate startDen, LocalDate slutDen, Patient patient) {
+    public Ordination(LocalDate startDen, LocalDate slutDen, Patient patient, Laegemiddel laegemiddel) {
         this.startDen = startDen;
         this.slutDen = slutDen;
         this.patient = patient;
@@ -26,6 +26,8 @@ public abstract class Ordination {
         if(this.laegemiddel != laegemiddel){
             this.laegemiddel = laegemiddel;
         }
+        else
+            System.out.println("Dette lægemiddel er allerede tildelt denne ordination");
     }
 
     public LocalDate getStartDen() {
