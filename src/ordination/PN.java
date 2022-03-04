@@ -5,7 +5,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 
 
-public abstract class PN extends Ordination {
+public class PN extends Ordination {
 
     private double antalEnheder;
 
@@ -38,6 +38,7 @@ public abstract class PN extends Ordination {
         return false;   
     }
 
+    @Override
     public double doegnDosis() {
         // TODO
         double doegnDosis = 0;
@@ -52,7 +53,7 @@ public abstract class PN extends Ordination {
         return doegnDosis;
     }
 
-
+    @Override
     public double samletDosis() {
         // TODO
         double samletDosis = 0.0;
@@ -73,6 +74,10 @@ public abstract class PN extends Ordination {
 
     public double getAntalEnheder() {
         return antalEnheder;
+    }
+
+    public String getType() {
+        return "pro necesare";
     }
 
 }

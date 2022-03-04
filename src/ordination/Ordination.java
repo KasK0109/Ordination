@@ -9,19 +9,6 @@ public abstract class Ordination {
     Patient patient;
 
     // TODO Link til Laegemiddel
-    private Laegemiddel laegemiddel;
-    /** Note: Nullable return value. */
-    public Laegemiddel getLaegemiddel(){
-        return laegemiddel;
-    }
-    public void setLaegemiddel(Laegemiddel laegemiddel){
-        this.laegemiddel = laegemiddel;
-    }
-
-    public void removeLaegemiddel() {
-        this.laegemiddel = null;
-    }
-
     // TODO constructor (med specifikation)
     public Ordination(LocalDate startDen, LocalDate slutDen, Patient patient, Laegemiddel laegemiddel) {
         this.startDen = startDen;
@@ -30,14 +17,32 @@ public abstract class Ordination {
         this.laegemiddel = laegemiddel;
     }
 
+    private Laegemiddel laegemiddel;
+    /** Note: Nullable return value. */
+    public Laegemiddel getLaegemiddel(){
+        return laegemiddel;
+    }
+    public void setLaegemiddel(Laegemiddel laegemiddel){
+        if(this.laegemiddel != laegemiddel){
+            this.laegemiddel = laegemiddel;
+        }
+    }
 
     public LocalDate getStartDen() {
         return startDen;
-    }	
+    }
 
     public LocalDate getSlutDen() {
         return slutDen;
     }
+
+    /**
+     * Get Patient metode - ikke nødvendigvis nødvendig til test
+     * @
+     */
+//    public Patient getPatient() {
+//        return patient;
+//    }
 
     /**
      * Antal hele dage mellem startdato og slutdato. Begge dage inklusive.

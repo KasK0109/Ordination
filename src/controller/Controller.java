@@ -39,10 +39,15 @@ public class Controller {
 
 		if (slutDen.isBefore(startDen)) {
 			throw new IllegalArgumentException("Slut datoen er foer start datoen!");
+		} else if (laegemiddel == null) {
+			throw new IllegalArgumentException("Laegemiddel er null!");
+		} else if (antal >= 0) {
+			return new PN(startDen, slutDen, patient, laegemiddel, antal);
 		} else {
-
+			System.out.println("Antal skal vaere positivt");
+			return null;
 		}
-		return null;
+
 	}
 
 	/**
@@ -56,7 +61,13 @@ public class Controller {
 			double morgenAntal, double middagAntal, double aftenAntal,
 			double natAntal) {
 		// TODO
-		return null;
+		if (slutDen.isBefore(startDen)) {
+			throw new IllegalArgumentException("Slut datoen er foer start datoen");
+		} else if (laegemiddel != null){
+			return new DagligFast(startDen, slutDen, patient, laegemiddel, morgenAntal, middagAntal, aftenAntal, natAntal);
+		} else {
+			return null;
+		}
 	}
 
 	/**
@@ -71,7 +82,15 @@ public class Controller {
 			LocalDate slutDen, Patient patient, Laegemiddel laegemiddel,
 			LocalTime[] klokkeSlet, double[] antalEnheder) {
 		// TODO
-		return null;
+		if (startDen.isBefore(slutDen)) {
+			throw new IllegalArgumentException("Start datoen er foer slut datoen");
+		} else if (klokkeSlet.length != antalEnheder.length) {
+			throw new IllegalArgumentException("Antallet af enheder i klokkeSlet og antalEnheder er forskellige");
+		} else if (laegemiddel != null){
+			return new DagligSkaev(startDen, slutDen, patient, laegemiddel, klokkeSlet, antalEnheder);
+		} else {
+			return null;
+		}
 	}
 
 	/**
@@ -82,6 +101,13 @@ public class Controller {
 	 */
 	public void ordinationPNAnvendt(PN ordination, LocalDate dato) {
 		// TODO
+		if (dato.isAfter(ordination.getStartDen()) || dato.isEqual(ordination.getStartDen())
+				&& dato.isBefore(ordination.getSlutDen()) || dato.isEqual(ordination.getSlutDen())) {
+			ordination.givDosis(dato);
+		} else {
+			throw new IllegalArgumentException("Datoen er ikke indenfor ordinationens gyldighedsperiode");
+		}
+
 	}
 
 	/**
@@ -92,7 +118,18 @@ public class Controller {
 	 */
 	public double anbefaletDosisPrDoegn(Patient patient, Laegemiddel laegemiddel) {
 		//TODO
-		return 0;
+		if (patient.getVaegt() < 25.0) {
+			return laegemiddel.getEnhedPrKgPrDoegnLet();
+		}
+		if (patient.getVaegt() >= 25.0 && patient.getVaegt() <= 120.0) {
+			return laegemiddel.getEnhedPrKgPrDoegnNormal();
+		}
+		if (patient.getVaegt() > 120.0) {
+			return laegemiddel.getEnhedPrKgPrDoegnTung();
+		}
+		else {
+			return 0.0;
+		}
 	}
 
 	/**
@@ -103,6 +140,7 @@ public class Controller {
 	public int antalOrdinationerPrVægtPrLægemiddel(double vægtStart,
 			double vægtSlut, Laegemiddel laegemiddel) {
 		// TODO
+		
 		return 0;
 	}
 

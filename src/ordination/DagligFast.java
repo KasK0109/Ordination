@@ -3,7 +3,7 @@ package ordination;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public abstract class DagligFast extends Ordination {
+public class DagligFast extends Ordination {
 
 
     // composition -> 0..* dosis
@@ -23,7 +23,7 @@ public abstract class DagligFast extends Ordination {
     //-----------------------------------------
 
 
-    public DagligFast(LocalDate startDen, LocalDate slutDen, Patient patient, Laegemiddel laegemiddel, int morgenAntal, int middagsAntal, int aftensAntal, int NatAntal) {
+    public DagligFast(LocalDate startDen, LocalDate slutDen, Patient patient, Laegemiddel laegemiddel, double morgenAntal, double middagsAntal, double aftensAntal, double NatAntal) {
         super(startDen, slutDen, patient, laegemiddel);
         if(morgenAntal>0)
             opretDosis(LocalTime.of(8,0), morgenAntal, 0);
@@ -37,6 +37,20 @@ public abstract class DagligFast extends Ordination {
     }
 
 
+    @Override
+    public double samletDosis() {
+        return 0;
+    }
+
+    @Override
+    public double doegnDosis() {
+        return 0;
+    }
+
+    @Override
+    public String getType() {
+        return null;
+    }
 }
 
 
