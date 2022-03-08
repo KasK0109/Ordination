@@ -11,7 +11,7 @@ public class Controller {
 	private Storage storage;
 	private static Controller controller;
 
-	private Controller() {
+	public Controller() {
 		storage = new Storage();
 	}
 
@@ -119,13 +119,13 @@ public class Controller {
 	public double anbefaletDosisPrDoegn(Patient patient, Laegemiddel laegemiddel) {
 		//TODO
 		if (patient.getVaegt() < 25.0) {
-			return laegemiddel.getEnhedPrKgPrDoegnLet();
+			return laegemiddel.getEnhedPrKgPrDoegnLet() * patient.getVaegt();
 		}
 		if (patient.getVaegt() >= 25.0 && patient.getVaegt() <= 120.0) {
-			return laegemiddel.getEnhedPrKgPrDoegnNormal();
+			return laegemiddel.getEnhedPrKgPrDoegnNormal() * patient.getVaegt();
 		}
 		if (patient.getVaegt() > 120.0) {
-			return laegemiddel.getEnhedPrKgPrDoegnTung();
+			return laegemiddel.getEnhedPrKgPrDoegnTung () *patient.getVaegt();
 		}
 		else {
 			return 0.0;

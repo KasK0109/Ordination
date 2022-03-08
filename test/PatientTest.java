@@ -1,4 +1,7 @@
+import ordination.Laegemiddel;
 import ordination.Ordination;
+import ordination.PN;
+import ordination.Patient;
 import org.junit.Test;
 
 import java.time.LocalDate;
@@ -17,16 +20,18 @@ public class PatientTest {
         LocalDate date2 = LocalDate.of(2022, 6, 5);
 
         //Act
-        Ordination ordination1 = new Ordination(date1, date2, "Jane Jensen ", "Parcatemol") {
-        }
-        ordinationer.add(Ordination);
+        Patient patient1 = new Patient("12345678", "Jane Jensen",63.4);
+        Laegemiddel laegemiddel = new Laegemiddel("Paracatemol",3.2,1.5,2.0,"Mil");
+        Ordination ordination1 = new PN(date1, date2, patient1, laegemiddel,6);
+
+        ordinationer.add(ordination1);
         //Assert
-        assert (ordinationer.contains(ordination));
+        assert (ordinationer.contains(ordination1));
     }
 
 
 
-    }
+
         @Test
         public void test_removeOrdination (Ordination ordination) {
             ArrayList<Ordination> ordinationer = new ArrayList<>();
