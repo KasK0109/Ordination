@@ -16,6 +16,8 @@ public class PN extends Ordination {
               Patient patient, Laegemiddel laegemiddel, double antal) {
         super(startDen, slutDen, patient, laegemiddel);
         this.antalEnheder = antal;
+        this.startDen = startDen;
+        this.slutDen = slutDen;
     }
 
     /**
@@ -42,9 +44,9 @@ public class PN extends Ordination {
         // TODO
         double doegnDosis = 0;
         double samletEnheder = (datoer.size() * antalEnheder);
-        long dageImellem = ChronoUnit.DAYS.between(startDen, slutDen);
+        long dageImellem = ChronoUnit.DAYS.between(datoer.get(0), datoer.get(datoer.size()-1));
         if (!startDen.isEqual(slutDen)) {
-            dageImellem += 2;
+            dageImellem += 1;
         } else {
             dageImellem = 1;
         }

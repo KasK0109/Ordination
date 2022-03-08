@@ -11,7 +11,7 @@ public class DagligSkaev extends Ordination {
 
     public DagligSkaev(LocalDate startDen, LocalDate slutDen, Patient patient, Laegemiddel laegemiddel,LocalTime[] klokkeSlet, double[] antalEnheder) {
         super(startDen, slutDen, patient, laegemiddel);
-        for(int i = 0; i>klokkeSlet.length; i++){
+        for(int i = 0; i<klokkeSlet.length; i++){
             opretDosis(klokkeSlet[i],antalEnheder[i]);
         }
     }
@@ -33,7 +33,7 @@ public class DagligSkaev extends Ordination {
     @Override
     public double samletDosis() {
         int antal = 0;
-        for(int i = 0; i >dosisser.size();i++) {
+        for(int i = 0; i <dosisser.size();i++) {
             antal += dosisser.get(i).getAntal();
         }
         return ChronoUnit.DAYS.between(getStartDen(),getSlutDen())*antal;
