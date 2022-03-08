@@ -60,7 +60,6 @@ public class Controller {
 			LocalDate slutDen, Patient patient, Laegemiddel laegemiddel,
 			double morgenAntal, double middagAntal, double aftenAntal,
 			double natAntal) {
-
 		// TODO
 		if (slutDen.isBefore(startDen)) {
 			throw new IllegalArgumentException("Slut datoen er foer start datoen");
@@ -141,7 +140,7 @@ public class Controller {
 	public int antalOrdinationerPrVægtPrLægemiddel(double vægtStart,
 			double vægtSlut, Laegemiddel laegemiddel) {
 		// TODO
-
+		
 		return 0;
 	}
 

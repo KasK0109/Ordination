@@ -26,17 +26,23 @@ public abstract class Ordination {
         if(this.laegemiddel != laegemiddel){
             this.laegemiddel = laegemiddel;
         }
-        else
-            System.out.println("Dette lægemiddel er allerede tildelt denne ordination");
     }
 
     public LocalDate getStartDen() {
         return startDen;
-    }	
+    }
 
     public LocalDate getSlutDen() {
         return slutDen;
     }
+
+    /**
+     * Get Patient metode - ikke nødvendigvis nødvendig til test
+     * @
+     */
+//    public Patient getPatient() {
+//        return patient;
+//    }
 
     /**
      * Antal hele dage mellem startdato og slutdato. Begge dage inklusive.

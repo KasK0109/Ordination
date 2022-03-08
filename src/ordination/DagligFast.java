@@ -1,39 +1,56 @@
 package ordination;
 
-import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.Arrays;
 
-public abstract class DagligFast<dosiser> extends Ordination {
+public class DagligFast extends Ordination {
 
 
-        // composition -> 0..* dosis
-        private final Dosis[] dosiser = new Dosis[4];
-        public Dosis[]() {
-            return dosiser.clone();
-        }
+    // composition -> 0..* dosis
+    private final Dosis[] dosisser = new Dosis[4];
 
-        public Dosis createDosis(String name) {
-            Dosis dosis = new Dosis(name);
-            dosiser[]dosisers;
-            return dosis;
-        }
+    public void opretDosis(LocalTime tid, double antal, int index) {
+        Dosis dosis = new Dosis(tid,antal);
 
+        dosisser[index] = dosis;
 
+    }
 
+    public Dosis[] getDoser() {
+        return dosisser;
+    }
 
-
-
-        //-----------------------------------------
+    //-----------------------------------------
 
 
-
+    public DagligFast(LocalDate startDen, LocalDate slutDen, Patient patient, Laegemiddel laegemiddel, double morgenAntal, double middagsAntal, double aftensAntal, double NatAntal) {
+        super(startDen, slutDen, patient, laegemiddel);
+        if(morgenAntal>0)
+            opretDosis(LocalTime.of(8,0), morgenAntal, 0);
+        if (middagsAntal > 0)
+            opretDosis(LocalTime.of(12,0), middagsAntal, 1);
+        if (aftensAntal > 0)
+            opretDosis(LocalTime.of(18,0), aftensAntal, 2);
+        if(NatAntal > 0)
+            opretDosis(LocalTime.of(24,0), NatAntal, 3);
 
     }
 
 
-    // TODO
+    @Override
+    public double samletDosis() {
+        return 0;
+    }
+
+    @Override
+    public double doegnDosis() {
+        return 0;
+    }
+
+    @Override
+    public String getType() {
+        return null;
+    }
+}
 
 
