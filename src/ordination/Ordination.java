@@ -10,10 +10,24 @@ public abstract class Ordination {
 
     // TODO Link til Laegemiddel
     // TODO constructor (med specifikation)
-    public Ordination(LocalDate startDen, LocalDate slutDen) {
+    public Ordination(LocalDate startDen, LocalDate slutDen, Patient patient, Laegemiddel laegemiddel) {
         this.startDen = startDen;
         this.slutDen = slutDen;
         this.patient = patient;
+        this.laegemiddel = laegemiddel;
+    }
+
+    private Laegemiddel laegemiddel;
+    /** Note: Nullable return value. */
+    public Laegemiddel getLaegemiddel(){
+        return laegemiddel;
+    }
+    public void setLaegemiddel(Laegemiddel laegemiddel){
+        if(this.laegemiddel != laegemiddel){
+            this.laegemiddel = laegemiddel;
+        }
+        else
+            System.out.println("Dette lægemiddel er allerede tildelt denne ordination");
     }
 
     public LocalDate getStartDen() {

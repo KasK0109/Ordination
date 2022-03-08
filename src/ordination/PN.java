@@ -1,21 +1,20 @@
 package ordination;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 
-public abstract class PN extends Ordination {
+
+public class PN extends Ordination {
 
     private double antalEnheder;
 
     private LocalDate startDen;
     private LocalDate slutDen;
-    Patient patient;
-    Laegemiddel laegemiddel;
 
     public PN(LocalDate startDen, LocalDate slutDen,
               Patient patient, Laegemiddel laegemiddel, double antal) {
-        super(startDen, slutDen);
-        this.patient = patient;
-        this.laegemiddel = laegemiddel;
+        super(startDen, slutDen, patient, laegemiddel);
         this.antalEnheder = antal;
     }
 
@@ -26,20 +25,46 @@ public abstract class PN extends Ordination {
      * @param givesDen
      * @return
      */
+
+    ArrayList<LocalDate> datoer = new ArrayList<>();
+
     public boolean givDosis(LocalDate givesDen) {
         // TODO
+        if ((givesDen.isAfter(startDen) || givesDen.isEqual(startDen)) &&
+                (givesDen.isBefore(slutDen) || givesDen.isEqual(slutDen))) {
+            datoer.add(givesDen);
+            return true;
+        }
         return false;   
     }
 
     public double doegnDosis() {
         // TODO
-        return 0.0;
+        double doegnDosis = 0;
+        double samletEnheder = (datoer.size() * antalEnheder);
+        long dageImellem = ChronoUnit.DAYS.between(startDen, slutDen);
+        if (!startDen.isEqual(slutDen)) {
+            dageImellem += 2;
+        } else {
+            dageImellem = 1;
+        }
+        doegnDosis = samletEnheder / dageImellem;
+        return doegnDosis;
+    }
+
+    @Override
+    public String getType() {
+        return null;
     }
 
 
     public double samletDosis() {
         // TODO
-        return 0.0;
+        double samletDosis = 0.0;
+        for (int i = 0; i < datoer.size(); i++) {
+            samletDosis += antalEnheder;
+        }
+        return samletDosis;
     }
 
     /**
@@ -48,7 +73,7 @@ public abstract class PN extends Ordination {
      */
     public int getAntalGangeGivet() {
         // TODO
-        return-1;
+        return datoer.size();
     }
 
     public double getAntalEnheder() {
