@@ -1,3 +1,5 @@
+package ordination;
+
 import ordination.*;
 import org.junit.Test;
 

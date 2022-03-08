@@ -1,3 +1,5 @@
+package ordination;
+
 import ordination.DagligSkaev;
 import ordination.Dosis;
 import ordination.Laegemiddel;

@@ -1,3 +1,5 @@
+package Controller;
+
 import controller.Controller;
 import ordination.Laegemiddel;
 import ordination.Patient;
@@ -35,7 +37,6 @@ public class ControllerTest {
     }
     @Test
     public void test_anbefaletDosisPrDoegn(){
-        double[] antalEnheder = {5,3,2,5};
         //Arrange
         double normalVægt = 1.5;
         double underVægt = 0.5;
@@ -49,9 +50,9 @@ public class ControllerTest {
         Patient patient3 = new Patient("12345671", "Jørgen Nilsen",19.3);
 
         //Act
-        assertEquals(underVægt*patient3.getVaegt(),controller.anbefaletDosisPrDoegn(patient3,laegemiddel));
-        assertEquals(normalVægt*patient1.getVaegt(),controller.anbefaletDosisPrDoegn(patient1,laegemiddel));
-        assertEquals(overVægt * patient2.getVaegt(),controller.anbefaletDosisPrDoegn(patient2,laegemiddel));
+        assertEquals(underVægt,controller.anbefaletDosisPrDoegn(patient3,laegemiddel));
+        assertEquals(normalVægt,controller.anbefaletDosisPrDoegn(patient1,laegemiddel));
+        assertEquals(overVægt,controller.anbefaletDosisPrDoegn(patient2,laegemiddel));
 
 
 
