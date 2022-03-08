@@ -11,6 +11,9 @@ public class DagligFast extends Ordination {
     // composition -> 0..* dosis
     private final Dosis[] dosisser = new Dosis[4];
 
+    public Dosis[] getDoser(){
+        return dosisser;
+    }
     public void opretDosis(LocalTime tid, double antal, int index) {
         Dosis dosis = new Dosis(tid, antal);
         dosisser[index] = dosis;
