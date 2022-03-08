@@ -16,6 +16,8 @@ public class PN extends Ordination {
               Patient patient, Laegemiddel laegemiddel, double antal) {
         super(startDen, slutDen, patient, laegemiddel);
         this.antalEnheder = antal;
+        this.startDen = startDen;
+        this.slutDen = slutDen;
     }
 
     /**
@@ -30,12 +32,13 @@ public class PN extends Ordination {
 
     public boolean givDosis(LocalDate givesDen) {
         // TODO
-        if ((givesDen.isAfter(startDen) || givesDen.isEqual(startDen)) &&
-                (givesDen.isBefore(slutDen) || givesDen.isEqual(slutDen))) {
+        if ((this.startDen.isBefore(givesDen) || this.startDen.isEqual(givesDen)) &&
+                (this.slutDen.isAfter(givesDen) || this.slutDen.isEqual(givesDen))) {
             datoer.add(givesDen);
             return true;
+        } else {
+            return false;
         }
-        return false;   
     }
 
     @Override
@@ -43,9 +46,9 @@ public class PN extends Ordination {
         // TODO
         double doegnDosis = 0;
         double samletEnheder = (datoer.size() * antalEnheder);
-        long dageImellem = ChronoUnit.DAYS.between(startDen, slutDen);
+        long dageImellem = ChronoUnit.DAYS.between(datoer.get(0), datoer.get(datoer.size() - 1));
         if (!startDen.isEqual(slutDen)) {
-            dageImellem += 2;
+            dageImellem += 1;
         } else if(startDen == slutDen) {
             dageImellem = 1;
         }
@@ -76,6 +79,7 @@ public class PN extends Ordination {
         return antalEnheder;
     }
 
+    @Override
     public String getType() {
         return "pro necesare";
     }
