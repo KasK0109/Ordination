@@ -56,7 +56,7 @@ public class PN extends Ordination {
 
     @Override
     public String getType() {
-        return null;
+        return "Pro necessitate";
     }
 
 

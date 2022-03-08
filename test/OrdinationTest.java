@@ -86,7 +86,7 @@ public class OrdinationTest {
         double[] antalEnheder = {5,3,2,5};
         Patient p = new Patient("121556-0512","Jane Jensen",63.4);
         Laegemiddel l = new Laegemiddel("Paracetamol",1,1.5,2,"ML");
-        DagligFast o1 = new DagligFast(LocalDate.of(2022,5,1),LocalDate.of(2022,6,1),p,l,1,2,1,2);
+        DagligFast o1 = new DagligFast(LocalDate.of(2022,5,1),LocalDate.of(2022,6,1),p,l,5,3,2,5);
         DagligSkaev o2 = new DagligSkaev(LocalDate.of(2022,5,1),LocalDate.of(2022,6,1),p,l,klokkeslet, antalEnheder);
         PN o3 = new PN(LocalDate.of(2022,5,2),LocalDate.of(2022,6,2),p,l,5);
         //Act
@@ -133,7 +133,7 @@ public class OrdinationTest {
         double[] antalEnheder = {5,3,2,5};
         Patient p = new Patient("121556-0512","Jane Jensen",63.4);
         Laegemiddel l = new Laegemiddel("Paracetamol",1,1.5,2,"ML");
-        DagligFast o1 = new DagligFast(LocalDate.of(2022,5,1),LocalDate.of(2022,6,1),p,l,1,2,1,2);
+        DagligFast o1 = new DagligFast(LocalDate.of(2022,5,1),LocalDate.of(2022,6,1),p,l,5,3,2,5);
         DagligSkaev o2 = new DagligSkaev(LocalDate.of(2022,5,1),LocalDate.of(2022,6,1),p,l,klokkeslet, antalEnheder);
         PN o3 = new PN(LocalDate.of(2022,5,2),LocalDate.of(2022,6,2),p,l,5);
         //Act
@@ -157,6 +157,53 @@ public class OrdinationTest {
         o3.givDosis(LocalDate.of(2022,5,28));
         //Assert
         assertEquals(0.7142857142857143,o3.doegnDosis());
+    }
+    @Test
+    public void GetTypeTest_DagligSkaev() {
+        //Arrange
+        LocalTime[] klokkeslet = {LocalTime.of(8,0),LocalTime.of(12,0),LocalTime.of(18,0),LocalTime.of(22,0)};
+        double[] antalEnheder = {5,3,2,5};
+        Patient p = new Patient("121556-0512","Jane Jensen",63.4);
+        Laegemiddel l = new Laegemiddel("Paracetamol",1,1.5,2,"ML");
+        DagligFast o1 = new DagligFast(LocalDate.of(2022,5,1),LocalDate.of(2022,6,1),p,l,1,2,1,2);
+        DagligSkaev o2 = new DagligSkaev(LocalDate.of(2022,5,1),LocalDate.of(2022,6,1),p,l,klokkeslet, antalEnheder);
+        PN o3 = new PN(LocalDate.of(2022,5,2),LocalDate.of(2022,6,2),p,l,5);
+        //Act
+
+        //Assert
+        assertEquals("Daglig Skaev",o2.getType());
+    }
+    @Test
+    public void GetTypeTest_DagligFast() {
+        //Arrange
+        LocalTime[] klokkeslet = {LocalTime.of(8,0),LocalTime.of(12,0),LocalTime.of(18,0),LocalTime.of(22,0)};
+        double[] antalEnheder = {5,3,2,5};
+        Patient p = new Patient("121556-0512","Jane Jensen",63.4);
+        Laegemiddel l = new Laegemiddel("Paracetamol",1,1.5,2,"ML");
+        DagligFast o1 = new DagligFast(LocalDate.of(2022,5,1),LocalDate.of(2022,6,1),p,l,1,2,1,2);
+        DagligSkaev o2 = new DagligSkaev(LocalDate.of(2022,5,1),LocalDate.of(2022,6,1),p,l,klokkeslet, antalEnheder);
+        PN o3 = new PN(LocalDate.of(2022,5,2),LocalDate.of(2022,6,2),p,l,5);
+        //Act
+
+        //Assert
+        assertEquals("Daglig Fast",o1.getType());
+    }
+    @Test
+    public void GetTypeTest_PN() {
+        //Arrange
+        LocalTime[] klokkeslet = {LocalTime.of(8,0),LocalTime.of(12,0),LocalTime.of(18,0),LocalTime.of(22,0)};
+        double[] antalEnheder = {5,3,2,5};
+        Patient p = new Patient("121556-0512","Jane Jensen",63.4);
+        Laegemiddel l = new Laegemiddel("Paracetamol",1,1.5,2,"ML");
+        DagligFast o1 = new DagligFast(LocalDate.of(2022,5,1),LocalDate.of(2022,6,1),p,l,1,2,1,2);
+        DagligSkaev o2 = new DagligSkaev(LocalDate.of(2022,5,1),LocalDate.of(2022,6,1),p,l,klokkeslet, antalEnheder);
+        PN o3 = new PN(LocalDate.of(2022,5,2),LocalDate.of(2022,6,2),p,l,5);
+        //Act
+        o3.givDosis(LocalDate.of(2022,5,8));
+        o3.givDosis(LocalDate.of(2022,5,15));
+        o3.givDosis(LocalDate.of(2022,5,28));
+        //Assert
+        assertEquals("Pro necessitate",o3.getType());
     }
 
 

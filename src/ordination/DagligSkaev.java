@@ -43,7 +43,7 @@ public class DagligSkaev extends Ordination {
     @Override
     public double doegnDosis() {
         int antal = 0;
-        for(int i = 0; i >dosisser.size();i++) {
+        for(int i = 0; i <dosisser.size();i++) {
             antal += dosisser.get(i).getAntal();
         }
         return samletDosis()/ChronoUnit.DAYS.between(getStartDen(),getSlutDen());
@@ -51,6 +51,6 @@ public class DagligSkaev extends Ordination {
 
     @Override
     public String getType() {
-        return getClass().getName();
+        return "Daglig Skaev";
     }
 }
