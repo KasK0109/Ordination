@@ -82,7 +82,7 @@ public class Controller {
 			LocalDate slutDen, Patient patient, Laegemiddel laegemiddel,
 			LocalTime[] klokkeSlet, double[] antalEnheder) {
 		// TODO
-		if (startDen.isBefore(slutDen)) {
+		if (slutDen.isBefore(startDen)) {
 			throw new IllegalArgumentException("Start datoen er foer slut datoen");
 		} else if (klokkeSlet.length != antalEnheder.length) {
 			throw new IllegalArgumentException("Antallet af enheder i klokkeSlet og antalEnheder er forskellige");
@@ -112,20 +112,20 @@ public class Controller {
 
 	/**
 	 * Den anbefalede dosis for den pågældende patient (der skal tages hensyn
-	 * til patientens vægt). Det er en forskellig enheds faktor der skal
+	 * til patientens 	vægt). Det er en forskellig enheds faktor der skal
 	 * anvendes, og den er afhængig af patientens vægt.
 	 * Pre: patient og lægemiddel er ikke null
 	 */
 	public double anbefaletDosisPrDoegn(Patient patient, Laegemiddel laegemiddel) {
 		//TODO
 		if (patient.getVaegt() < 25.0) {
-			return laegemiddel.getEnhedPrKgPrDoegnLet();
+			return patient.getVaegt() * laegemiddel.getEnhedPrKgPrDoegnLet();
 		}
 		if (patient.getVaegt() >= 25.0 && patient.getVaegt() <= 120.0) {
-			return laegemiddel.getEnhedPrKgPrDoegnNormal();
+			return patient.getVaegt() * laegemiddel.getEnhedPrKgPrDoegnNormal();
 		}
 		if (patient.getVaegt() > 120.0) {
-			return laegemiddel.getEnhedPrKgPrDoegnTung();
+			return patient.getVaegt() * laegemiddel.getEnhedPrKgPrDoegnTung();
 		}
 		else {
 			return 0.0;
@@ -140,8 +140,17 @@ public class Controller {
 	public int antalOrdinationerPrVægtPrLægemiddel(double vægtStart,
 			double vægtSlut, Laegemiddel laegemiddel) {
 		// TODO
-		
-		return 0;
+		int antal = 0;
+		for (Patient p : getAllPatienter()) {
+			if (laegemiddel != null && p.getVaegt() >= vægtStart && p.getVaegt() <= vægtSlut) {
+				for (Ordination o : p.getOrdinationer()) {
+					if (o.getLaegemiddel() == laegemiddel) {
+						antal++;
+					}
+				}
+			}
+		}
+		return antal;
 	}
 
 	public List<Patient> getAllPatienter() {

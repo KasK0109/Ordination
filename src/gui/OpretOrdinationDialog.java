@@ -1,7 +1,5 @@
 package gui;
 
-import java.time.LocalTime;
-
 import controller.Controller;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -18,6 +16,8 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import ordination.Laegemiddel;
 import ordination.Patient;
+
+import java.time.LocalTime;
 
 public class OpretOrdinationDialog extends Stage {
 

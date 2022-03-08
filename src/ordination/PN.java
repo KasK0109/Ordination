@@ -43,9 +43,9 @@ public class PN extends Ordination {
         // TODO
         double doegnDosis = 0;
         double samletEnheder = (datoer.size() * antalEnheder);
-        long dageImellem = ChronoUnit.DAYS.between(startDen, slutDen);
+        long dageImellem = ChronoUnit.DAYS.between(datoer.get(0), datoer.get(datoer.size() - 1));
         if (!startDen.isEqual(slutDen)) {
-            dageImellem += 2;
+            dageImellem += 1;
         } else if(startDen == slutDen) {
             dageImellem = 1;
         }
@@ -76,6 +76,7 @@ public class PN extends Ordination {
         return antalEnheder;
     }
 
+    @Override
     public String getType() {
         return "pro necesare";
     }
