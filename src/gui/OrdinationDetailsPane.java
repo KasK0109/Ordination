@@ -15,6 +15,8 @@ import ordination.Dosis;
 import ordination.Ordination;
 import ordination.PN;
 
+
+
 public class OrdinationDetailsPane extends GridPane {
     private TextField txtStarttid, txtSluttid, txtLaegemiddel, txtDoegndosis,
         txtTotalDosis;

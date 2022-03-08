@@ -5,13 +5,7 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.GridPane;
-import ordination.DagligFast;
-import ordination.DagligSkaev;
-import ordination.Ordination;
-import ordination.PN;
-import ordination.Patient;
-
-import javax.swing.text.html.ListView;
+import ordination.*;
 
 public class VisOrdinationPane extends GridPane {
 	private ListView<Patient> lstPatient = new ListView<>();
