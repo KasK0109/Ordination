@@ -32,24 +32,22 @@ public class PN extends Ordination {
 
     public boolean givDosis(LocalDate givesDen) {
         // TODO
-        if ((this.startDen.isBefore(givesDen) || this.startDen.isEqual(givesDen)) &&
-                (this.slutDen.isAfter(givesDen) || this.slutDen.isEqual(givesDen))) {
+        if ((givesDen.isAfter(startDen) || givesDen.isEqual(startDen)) &&
+                (givesDen.isBefore(slutDen) || givesDen.isEqual(slutDen))) {
             datoer.add(givesDen);
             return true;
-        } else {
-            return false;
         }
+        return false;   
     }
 
-    @Override
     public double doegnDosis() {
         // TODO
         double doegnDosis = 0;
         double samletEnheder = (datoer.size() * antalEnheder);
-        long dageImellem = ChronoUnit.DAYS.between(datoer.get(0), datoer.get(datoer.size() - 1));
+        long dageImellem = ChronoUnit.DAYS.between(datoer.get(0), datoer.get(datoer.size()-1));
         if (!startDen.isEqual(slutDen)) {
             dageImellem += 1;
-        } else if(startDen == slutDen) {
+        } else {
             dageImellem = 1;
         }
         doegnDosis = samletEnheder / dageImellem;
@@ -57,6 +55,11 @@ public class PN extends Ordination {
     }
 
     @Override
+    public String getType() {
+        return "Pro necessitate";
+    }
+
+
     public double samletDosis() {
         // TODO
         double samletDosis = 0.0;
@@ -77,11 +80,6 @@ public class PN extends Ordination {
 
     public double getAntalEnheder() {
         return antalEnheder;
-    }
-
-    @Override
-    public String getType() {
-        return "pro necesare";
     }
 
 }
