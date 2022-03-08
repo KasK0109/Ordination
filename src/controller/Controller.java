@@ -141,6 +141,7 @@ public class Controller {
 			double vægtSlut, Laegemiddel laegemiddel) {
 		// TODO
 
+
 		return 0;
 	}
 

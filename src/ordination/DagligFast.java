@@ -30,7 +30,7 @@ public class DagligFast extends Ordination {
         if (aftensAntal > 0)
             opretDosis(LocalTime.of(18, 0), aftensAntal, 2);
         if (NatAntal > 0)
-            opretDosis(LocalTime.of(24, 0), NatAntal, 3);
+            opretDosis(LocalTime.of(23, 0), NatAntal, 3);
 
     }
 
